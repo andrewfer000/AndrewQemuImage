@@ -1,0 +1,31 @@
+ {
+  "vm_name": "Default",
+  "vm_os": "Rocky",
+  "headless":"False",
+  "vm_os_version": "9.2",
+  "vm_is_cloud": "False",
+  "vm_static_ip": "USEDHCP",
+  "vm_sshkey_url": "USEMANUAL",
+  "vm_sshkey_manual": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCSE6eTrc91qB5/EWp/8VH7uk6c2fDo3uT7PPEiRtjInIIRajaZK4yLBegLEKC15Vhvwtx04URFxl7md/2wTSnMAc+yluBBpXE19KxjXmp0m2WqtstFit0IxCVtWeA3cm+EOBpoRHN7cAi0e9q+oXNGGkORfbsl/yKDyT0aS2Gko8f9ED8L3FyQ4g2UX6vlxM3T9BEZBrdPhHPsEqD4RM5RADe/M9eX8ERUb/+g3SMXTNirYPru43e6kVTXRQi8Bs1Qr/MnLzyfHEhf++RLZYHDfrP+sN/19zZOAG0Vj5+1WN9SFmsFY+yG/MYRm6+Rv4WZrBlDiYce/wupxL8Y1jSfCI98joWL2pbHwgTEuNWnQBaJWctqpmh/RohNMvVThzTZeZP4g/rle8ymisErjVc9Ug+8yd/000VotBdowaLUDYGp7NBSGuE5yknvZkKzlBZlOec2BhQaSsValnnJVKZRAPWpLZgaHtLSSY4KFqMf43ePqDTownwMpVl3TGJCWIM= owner@andrews-asus",
+  "domain": "example.com",
+  "webserver_port" : "8576",
+  "vm_options": {
+    "vm_cpu_cores": "2",
+    "vm_memory": "1024M",
+    "vm_disk_space": "42G",
+    "vm_network": "NA"
+  },
+  "os_options": {
+    "os_download": "https://download.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2-x86_64-minimal.iso",
+    "os_checksum": "sha256:06505828e8d5d052b477af5ce62e50b938021f5c28142a327d4d5c075f0670dc",
+    "os_username": "owner",
+    "os_password": "TestPass1",
+    "os_hashed_password": "$6$6TuyybOu4s4yDTW3$1nI4Zelf5sxgbqlAXeSj65Y9P7DC8aym85a3bKHu2W5PzrNPi9QTyv9ZbaRBuq0FHVCi.uz.klHmVyL.Qswgf1",
+    "os_hostname": "default",
+    "os_dhcp": "True",
+    "os_proxy": "NA",
+    "os_mirror": "https://mirror.xenyth.net/rocky/9.2/BaseOS/x86_64/os/"
+  },
+
+  "Lol": ["Test1", "Test2", "Test3"]
+}

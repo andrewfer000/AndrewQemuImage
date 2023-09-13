@@ -1,0 +1,11 @@
+[Unit]
+Description=My Custom Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "ip link | awk -F: '/^[0-9]+: / {count++; if (count == 2) print \$2}' | dhclient"
+User=root
+
+[Install]
+WantedBy=multi-user.target

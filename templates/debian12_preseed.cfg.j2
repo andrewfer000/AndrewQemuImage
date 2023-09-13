@@ -1,0 +1,42 @@
+ # Debian Installer preconfiguration file
+# This file is used as a template to be loaded during the Debian installation.
+
+# Localization
+d-i debian-installer/locale string en_US
+d-i keyboard-configuration/xkb-keymap select us
+
+# Network configuration
+d-i netcfg/choose_interface select auto
+d-i netcfg/use_dhcp boolean true
+d-i netcfg/get_hostname string {{ os_hostname }}
+d-i netcfg/get_domain string {{ domain }}
+
+# Mirror settings
+d-i mirror/country string manual
+d-i mirror/http/hostname string http.us.debian.org
+d-i mirror/http/directory string /debian
+d-i mirror/http/proxy string
+
+# Account setup
+d-i passwd/root-login boolean false
+d-i passwd/make-user boolean true
+d-i passwd/user-fullname string {{ username }}
+d-i passwd/username string {{ username }}
+d-i passwd/user-password-crypted password {{ hashed_password }}
+
+# Clock and timezone
+d-i clock-setup/utc boolean true
+d-i time/zone string UTC
+
+# Partitioning (Use 'auto' for guided partitioning)
+d-i partman-auto/method string regular
+
+# Package selection (Install only basic utilities and SSH server)
+tasksel tasksel/first multiselect standard, ssh-server
+
+# Install Grub to the MBR
+d-i grub-installer/bootdev string /dev/vda
+
+# Finish installation
+d-i finish-install/reboot_in_progress note
+

@@ -1,0 +1,57 @@
+#version=DEVEL
+# System authorization information
+auth --enableshadow --passalgo=sha512
+
+# Use graphical install
+graphical
+
+# Run the Setup Agent on first boot
+firstboot --enable
+
+# Keyboard configuration
+keyboard --vckeymap=us --xlayouts='us'
+
+# System language
+lang en_US.UTF-8
+
+# Network information
+network --bootproto=dhcp --device=enp1s0 --onboot=on --hostname={{ os_hostname }}.{{ domain }}
+
+# Hostname
+%pre
+echo "{{ os_hostname }}.{{ domain }}" > /etc/hostname
+%end
+
+
+# Mirror
+url --url {{ os_mirror }}
+
+# System timezone
+timezone America/New_York --utc
+
+# Regular user creation
+user --name={{ username }} --groups=wheel --password={{ hashed_password }} --iscrypted
+
+# System bootloader configuration
+bootloader --location=mbr --driveorder=vda --append="crashkernel=auto"
+
+# Partition clearing information
+clearpart --all --initlabel
+
+# Disk partitioning information
+part /boot --fstype="xfs" --size=512
+part swap --fstype="swap" --size=4096
+part / --fstype="xfs" --grow --size=1
+
+# Packages to install
+%packages
+@core
+%end
+
+# Configure sudo
+%post
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+%end
+
+# Reboot the system when installation is complete
+reboot

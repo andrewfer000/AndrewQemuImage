@@ -1,0 +1,2 @@
+Notes:
+<tab><wait2> inst.ks=http://{{ httpaddr }}:{{ httpport }}/ksconfig.cfg <enter>

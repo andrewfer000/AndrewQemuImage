@@ -1,0 +1,46 @@
+ {
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "iso_url": "{{ iso_url }}",
+      "iso_checksum": "{{ iso_checksum }}",
+      "ssh_username": "{{ username }}",
+      "ssh_password": "{{ password }}",
+      "ssh_timeout": "20m",
+      "format": "qcow2",
+      "output_directory": "output-debian",
+      "disk_size": "{{ disk_size }}",
+      "shutdown_command": "echo '{{ password }}' |  sudo -S shutdown -h +0",
+      "headless": "{{ headless }}",
+      "boot_wait": "5s",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "qemuargs": [
+        [ "-m", "{{ vm_memory }}" ],
+        ["-smp", "{{ vm_cpu_cores }}"]
+      ],
+     "boot_command": [
+        "<down><down><enter><down><down><down><down><down><down><enter><wait55>",
+        "http://{{ httpaddr }}:{{ httpport }}/debian12_preseed.cfg",
+        "<enter><wait30><enter><wait2><tab><enter><wait160>"
+        ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "echo '{{ password }}' |  sudo -S apt update",
+        "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys",
+        "chmod 0600 ~/.ssh/authorized_keys",
+        "wget -O - '{{ sshkeyurl  }}:{{ sshkeyport }}{{ sshkeyfile }}' >> ~/.ssh/authorized_keys",
+        "wget http://{{ httpaddr }}:{{ httpport }}/debian-custom-net.txt",
+        "echo '{{ password }}' |  sudo -S cp debian-custom-net.txt /etc/systemd/system/custom-net.service",
+        "echo '{{ password }}' |  sudo systemctl daemon-reload",
+        "echo '{{ password }}' |  sudo systemctl enable custom-net.service",
+        "rm custom-net.txt"
+      ]
+    }
+  ]
+  }
