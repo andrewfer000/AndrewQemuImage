@@ -9,7 +9,7 @@ My custom QEMU image builder using python and packer. Work in progress!
 # Use
 As of right now you can only use this on Linux systems with QEMU. A VMware genarator is comming soon!
 
-First you need to generate a config file. `python3 generate-config.py --help` will give you the options you need to set to build an OS. If no options are set a default configuration will be generated.
+First you need to generate a config file. `python3 generate-config.py --help` will give you the options you need to set to build an OS. If no options are set a default configuration will be generated. (Refer to the setup.json file in the repo for an example)
 Once a configuration (setup.json) is generated. Run `python3 LinuxAutomated.py` and if everything is setup properly watch it go! 
 
 # End Result
